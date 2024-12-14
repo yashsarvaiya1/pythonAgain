@@ -1,34 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Navbar</title>
-    <style>
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
+  <title>Clock</title>
+  <style>
+    body {
+      background-image: linear-gradient(to bottom, #ff00ff, #00ffff);
+      animation: changeBackground 2s ease-in-out infinite;
+    }
+
+    @keyframes changeBackground {
+      0% {
+        background-color: #ff00ff;
+      }
+      100% {
+        background-color: #007aff;
+      }
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    #clock {
+      font-size: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #seconds {
+      font-size: 40px;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: fade 1s linear infinite;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </nav>
+  <div id="clock"></div>
+  <div id="seconds"></div>
+  <script>
+    function updateClock() {
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+
+      hours = (hours < 10 ? "0" : "") + hours;
+      minutes = (minutes < 10 ? "0" : "") + minutes;
+      seconds = (seconds < 10 ? "0" : "") + seconds;
+
+      document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
+      document.getElementById("seconds").innerHTML = seconds;
+    }
+
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>

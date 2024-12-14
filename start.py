@@ -10,5 +10,10 @@ def hello_yash():
 def hello_there(name):
     return "hello," + name
 
+@app.route("/html",methods=["GET"])
+def html():
+    return render_template("index.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
+
